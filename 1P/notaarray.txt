@@ -1,0 +1,13 @@
+/*
+let array1 = [1, 2, 3, 40, 5];
+for (let i = 0; i < array1.length-1; i++) {
+        if (array1[i] <= array1[i + 1]) {
+            result="La cadena esta ordenada";
+        } else {
+            result="La cadena no esta ordenada";
+            break;
+            
+        }
+    }
+    console.log(result);
+*/
