@@ -1,14 +1,37 @@
 class Graph {
-    constructor() {
+    constructor(n) {
         this.edges = {};
         this.count = 0;
         this.count2 = 0;
         this.mult=false;
-        this.conjuntos=new Array;
         this.vertex = [];
+        this.rows=n;
+        this.columns=n;
+        this.conjuntos=new Array(this.rows)
+        .fill(0)
+        .map(() => new Array(this.columns).fill(0));
     }
 
-  
+    
+    isSquared() {
+        //tell if the matrix has the same amout of rows and columns
+        return this.rows === this.columns ? true : false;
+      }
+    
+      isSymetric() {
+        if (!this.isSquared()) return false;
+        else {
+          for (let i = 0; i < this.rows; i++) {
+            for (let j = 0; j < this.columns; j++) {
+              if (i != j && this.graph[i][j] != this.graph[j][i]) return false;
+            }
+          }
+          return true;
+        }
+      }
+      isDirected() {
+        return !this.isSymetric();
+      }
     addEdge(v1, v2) {
         this.edges[v1].push({
             vertice: v2
@@ -38,7 +61,7 @@ class Graph {
     printGraph() {
         let graph = "";
         this.vertex.forEach(vertice => {
-            graph += vertice + " -> " + this.edges[vertice].map(n => n.vertice).join("-") + "\n";
+            graph += vertice + " --> " + this.edges[vertice].map(n => n.vertice).join("-") + "\n";
         });
         console.log(graph);
     }
@@ -84,6 +107,21 @@ class Graph {
                 return result;
 
     }
+isDirected(){
+
+    let result=true;
+    for(let i=0;i<this.count;i++){
+        for(let k=0;k<2;k++){
+        if(this.conjuntos[i][k]===this.conjuntos[k][i]){
+            result=false;
+        }else {result=true;
+}
+        }}
+    
+            return result;
+
+}
+
 
     
     isSubgraph(g) {
@@ -115,6 +153,7 @@ g.printGraph();
 console.log(g.isComplete());
 console.log(g.isMultigraph());
 console.log(g.isSubgraph(g));
+console.log();
 /*
 Resultado:
 1 -> 2-4-3
